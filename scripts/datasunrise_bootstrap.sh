@@ -134,6 +134,7 @@ installer_install() {
 }
 
 installer_postinstall() {
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$DATASUNRISE_PATH
     sudo chmod +x $DATASUNRISE_CLI_FILE_NAME
     echo -ne "\n *** -----------------------------------------------------------\n Attempting to connect as non-admin user\n" >> $DATASUNRISE_LOG_SETUP
     $DATASUNRISE_CLI_FILE_NAME connect -host 127.0.0.1 -port "$DATASUNRISE_SERVER_PORT" -login "$DS_USER" -password "$DS_USER_PASSWD" >> $DATASUNRISE_LOG_SETUP 2>> $DATASUNRISE_LOG_SETUP
